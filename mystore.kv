@@ -1,0 +1,1078 @@
+MyAppManager:
+    id:manager
+    canvas:
+        Color:
+            rgb:.1,1,.2
+        Rectangle:
+            size:self.size
+            pos:self.pos
+    
+    SplashScreen:
+        id:splash
+        name:'splash'
+
+    New:
+        id:new
+        name:'new'
+
+    ACamera:
+        id:acamera
+        name:'acamera'
+
+    PhotoFile:
+        id:photoFile
+        name:'photofile'
+
+    Create:
+        id:create
+        name:'create'
+
+    Join:
+        id:join
+        name:'join'
+
+    Login:
+        id:login
+        name:'login'
+    
+    ForgotPass:
+        id:forgotpass
+        name:'forgotpass'
+
+    ChangePass:
+        id:changepass
+        name:'changepass'
+    Screen:
+        id:home
+        name:'home'
+        MDNavigationLayout:
+            id:home_layout
+            ScreenManager:
+                id:home_manager
+                Home:
+                    id:main_home
+                    name:'home'
+                Product:
+                    id:product
+                    name:'product'
+                Employee:
+                    id:employee
+                    name:'employee'
+                Branch:
+                    id:branch
+                    name:'branch'
+            HomeDrawer:
+                id:home_drawer
+                state:'close'
+                size_hint_x:.75
+                ScrollView:
+                    size_hint:1,1
+                    do_scroll_x:False
+                    do_scroll_y:True
+                    Content: 
+                        orientation:'vertical'
+                        size_hint:1,1
+                        pos_hint:{'top':1}
+
+<LP@MDLabel>:
+    size_hint:.5,.1
+    font_style:'Cascadia Code'
+<Text@CupertinoTextField>:
+    mode:'rectangle'
+    font_size:14
+    size_hint:.9,.7
+    multiline:False
+<LevCard>:
+    CheckBoxLeftWidget:
+        id:check
+        group:'level'
+<BigText@CupertinoTextView>:
+<CCode@MDDropDownItem>:
+    size_hint:.2,.6
+<ImageButton@MDIconButton>:
+<Command@CupertinoButton>:
+    size_hint:.3,.2
+    font_style:'Button'
+<CountryList@OneLineIconListItem>:
+    size_hint_y:None
+    height:30
+    IconLeftWidget:
+        user_font_size:'16sp'
+        canvas:
+            Color:
+                rgba:1,1,1,1
+            Ellipse:
+                source:root.icon
+                angle_start:0
+                angle_end:360
+                pos:self.pos
+                size:self.size
+<NavList@OneLineIconListItem>:
+<Content@MDBoxLayout>:
+    AnchorLayout:
+        anchor_x:'center'
+        size_hint_y:None
+        pos_hint:{'top':1}
+        FitImage:
+            id:simage
+            size_hint:None,None
+            radius:[20,]
+            source:'newshop.png'        
+    NavList:
+        icon:'toolbox'
+        text:'Edit Shop Profile'    
+    NavList:
+        icon:'toolbox'
+        text:'Product'    
+        on_release:app.root.change_screen('product')
+    NavList:
+        icon:'room-service'
+        text:'Employee'
+        on_release:app.root.change_screen('employee')
+    NavList:
+        icon:'source-branch'
+        text:'Branch'    
+        on_release:app.root.change_screen('branch')
+    NavList:
+        icon:'toolbox'
+        text:'View Tutorials'    
+    NavList:
+        icon:'toolbox'
+        text:'Tools'    
+    NavList:
+        icon:'cog'
+        text:'Settings'    
+    NavList:
+        icon:'toolbox'
+        text:'Contact Us / Feedback'    
+    NavList:
+        icon:'info'
+        text:'About'
+    NavList:
+        icon:'toolb'
+        text:'Sign Out'
+        on_release:app.root.change_screen('login')
+
+<SplashScreen>:
+    size_hint:1,1
+    md_bg_color:app.theme_cls.primary_light
+    MDLabel:
+        size_hint:.2,.2
+        pos_hint:{'x':.5,'y':.5}
+        text:'[b]MyApp[/b]'
+        font_size:'20sp'
+        markup:True
+        
+<New>:
+    size_hint:1,1
+    md_bg_color:app.theme_cls.primary_light
+    ScrollView:
+        size_hint:1,1
+        padding_x:.2
+        padding_y:.1
+        do_scroll_x:False
+        do_scroll_y:True
+        overscroll:False
+        MDRelativeLayout:
+            size_hint:.75,1.55
+            spacing:10                    
+            LP:
+                text:'[b]Create User Profile[/b]'                
+                size_hint:1,.1
+                font_size:20
+                pos_hint:{'center_x':.68,'y':.91}
+                halign:'center'
+                markup:True        
+            MsCard:
+                size_hint:.96,.85
+                elevation:15
+                radius:[15]
+                pos_hint:{'center_x':.675,'y':0.075}
+                MDGridLayout:                    
+                    cols:1
+                    spacing:10
+                    padding:30,20,30,20
+                    size_hint:.1,1
+                    pos_hint:{'center_x':.5,'center_y':.5}
+                    MDGridLayout:
+                        size_hint:.3,.87
+                        cols:1
+                        padding:45,0,35,45
+                        ImageButton:
+                            user_font_size:'64sp'
+                            source:'newaccount.png'                            
+                            pos_hint:{'center_x':.9,'y':.95}
+                            on_release:app.acc_pic_open()
+                            canvas:
+                                Color:
+                                    rgb:1,1,1
+                                Ellipse:
+                                    source:app.newaccount
+                                    angle_start:0
+                                    angle_end:360
+                                    pos:self.pos
+                                    size:self.size                            
+                    Text:
+                        id:fname
+                        hint_text:'First Name'
+                    Text:
+                        id:lname
+                        hint_text:'Last Name'                    
+                    Text:
+                        id:oname
+                        hint_text:'Other Name'                    
+                    LP:
+                        text:'Gender'
+                        size_hint:.2,.3
+                    MDBoxLayout:
+                        size_hint:.9,.5
+                        spacing:5
+                        adaptive_size:True
+                        orientation:'horizontal'
+                        GenderSwitch:
+                            CupertinoSystemButton:
+                                text:'Male'
+
+
+                    Text:
+                        id:password
+                        password:True
+                        hint_text:'Password'                    
+                    BigText:
+                        id:address
+                        multiline:True
+                        hint_text:'Home Address'
+                        size_hint_y:1.5
+                        max_text_length:70
+                    Command:
+                        id:dob
+                        text:'Select Date of Birth'
+                        size_hint:.2,.6
+                        center_x:.5
+                        on_release:app.datepick.open()
+                    Text:
+                        id:email
+                        hint_text:'Email Address'                    
+                        max_text_length:40                    
+                    MDBoxLayout:
+                        size_hint_y:.6
+                        spacing:10
+                        orientation:'horizontal'
+                        CCode:
+                            id:ccode
+                            text:'+234'
+                            size_hint:.3,.89
+                            icon:'earth'
+                            on_release:app.countrydrop.open()
+                        NumText:
+                            id:pnum
+                            hint_text:'Phone Number'
+                            size_hint:.4,.89
+                            input_filter:int
+            Command:
+                id:cowner
+                text:'CREATE'
+                pos_hint:{'x':.8,'y':.025}
+                size_hint:.3,.04
+                on_release:app.root.change_screen('create')
+            Command:
+                id:jshop
+                text:'JOIN'
+                pos_hint:{'x':.4,'y':.025}
+                size_hint:.3,.04
+                on_release:app.root.current='join'
+<Create>:
+    md_bg_color:app.theme_cls.primary_light
+    LP:
+        text:'[b]Create Shop[/b]'                
+        size_hint:1,.1
+        font_size:20
+        pos_hint:{'center_x':.5,'y':.91}
+        halign:'center'
+        markup:True        
+    MsCard:
+        size_hint:.8,.8
+        elevation:15
+        radius:[15]
+        pos_hint:{'center_x':.5,'y':0.105}
+        MDGridLayout:                    
+            cols:1
+            spacing:15
+            padding:30,20,30,20
+            size_hint:.1,1
+            pos_hint:{'center_x':.5,'center_y':.5}
+            ImageButton:
+                canvas:
+                    Color:
+                        rgb:1,1,1
+                    Ellipse:
+                        source:app.newshop
+                        angle_start:0
+                        angle_end:360
+                        pos:self.pos
+                        size:self.size
+                user_font_size:'64sp'
+                path:'newshop.png'    
+                pos_hint:{'center_x':.5,'y':.95}
+            Text:
+                id:sname
+                hint_text:'Shop Name'
+            Text:
+                id:saddr
+                multiline:True
+                hint_text:'Shop Address (Headquaters)'
+                size_hint_y:1.5
+            Text:
+                id:semail
+                hint_text:'Shop Email Address'
+            MDBoxLayout:
+                size_hint_y:.8
+                spacing:10
+                orientation:'horizontal'
+                CCode:
+                    id:scode
+                    text:'+234'
+                    size_hint:.3,.89
+                    icon:'earth'
+                    on_release:app.sdrop.open()
+                NumText:
+                    id:spnum
+                    hint_text:'Phone Number'
+                    size_hint:.4,.89
+    Command:
+        id:cshop
+        text:'Submit'
+        pos_hint:{'x':.55,'y':.03}
+        size_hint:.2,.06
+        on_release:app.root.change_screen('home')
+    Command:
+        id:back
+        text:'BACK'
+        pos_hint:{'x':.3,'y':.03}
+        size_hint:.2,.06
+        on_release:app.root.current='new'
+<Join>:
+    md_bg_color:app.theme_cls.primary_light
+    MsCard:
+        size_hint:.8,.8
+        elevation:15
+        radius:[15]
+        pos_hint:{'center_x':.5,'y':0.1}
+        MDGridLayout:                    
+            cols:1
+            spacing:15
+            padding:30,20,30,20
+            size_hint:.1,1
+            pos_hint:{'center_x':.5,'center_y':.5}
+            LP:
+                text:'Join as '
+            MDBoxLayout:
+                size_hint:.9,.2
+                spacing:5
+                orientation:'horizontal'
+                ToggleButton:
+                    id:employee
+                    text:'Employee'                        
+                    group:'type'
+                    size_hint:.3,1
+                ToggleButton:
+                    id:partner
+                    text:'Partner'
+                    group:'type'
+                    size_hint:.3,1
+            Text:
+                id:joinsid
+                hint_text:'Shop Name/ID'
+                size_hint:.9,.3
+                on_text_validate:app.root.get_dev_lev()
+            LP:
+                text:'Department'
+                size_hint:.9,.1
+            MDDropDownItem:
+                id:department
+                size_hint:.9,.1
+                text:'Select Department'
+            LP:
+                text:'Level'
+                size_hint:.9,.1
+            MDDropDownItem:
+                id:level
+                size_hint:.9,.1
+                text:'Select Level'
+            LP:
+                text:'Documents'
+                size_hint:.9,.1
+            MDCarousel:
+                id:files
+                border:10
+                size_hint:.9,.4
+            Command:
+                id:send_req
+                text:'Send Request'
+                size_hint:.2,.2
+                on_release:app.root.current='login'
+<Login>:
+    md_bg_color:app.theme_cls.primary_light
+    LP:
+        text:'[b]Sign In[/b]'                
+        size_hint:1,.1
+        font_size:20
+        pos_hint:{'center_x':.5,'center_y':.8}
+        halign:'center'
+        markup:True        
+    MsCard:
+        size_hint:.8,.5
+        elevation:15
+        radius:[15]
+        pos_hint:{'center_x':.5,'center_y':0.5}
+        MDGridLayout:                    
+            cols:1
+            spacing:15
+            padding:30,20,30,20
+            size_hint:.1,1
+            pos_hint:{'center_x':.5,'center_y':.5}
+            Text:
+                id:useremail
+                hint_text:'Username / Email Address'
+                size_hint:.9,.3                
+            Text:
+                id:passwlogin
+                password:True
+                hint_text:'Password'
+                size_hint:.9,.3
+            LP:
+                text:'[ref=forgotpass][u]Forgotten Password?[/u][/ref]'
+                size_hint:.9,.2
+                markup:True
+                on_ref_press:app.root.change_screen(args[1])
+            Command:
+                id:loginbut
+                text:'Login'
+                size_hint:.2,.2     
+                on_release:app.root.password_validate(useremail,passwlogin)  
+            Command:
+                id:donthaveacc
+                text:'Don\'t have an account?'
+                size_hint:.2,.2
+                on_release:app.root.current='new'
+<ForgotPass@MDScreen>:
+    md_bg_color:app.theme_cls.primary_light
+    LP:
+        text:'[b]Forgot Password[/b]'                
+        size_hint:1,.1
+        font_size:20
+        pos_hint:{'center_x':.5,'center_y':.8}
+        halign:'center'
+        markup:True        
+    MsCard:
+        size_hint:.8,.3
+        elevation:15
+        radius:[15]
+        pos_hint:{'center_x':.5,'center_y':0.5}
+        MDGridLayout:                    
+            cols:1
+            spacing:15
+            padding:30,20,30,20
+            size_hint:.1,1
+            pos_hint:{'center_x':.5,'center_y':.5}
+            Text:
+                id:forgotuseremail
+                hint_text:'Username / Email Address'
+                size_hint:.9,.2
+            Command:
+                id:setnewpass
+                text:'Set New Password'
+                size_hint:.2,.15                     
+                on_release:app.root.change_pass()
+<ChangePass@MDScreen>:
+    md_bg_color:app.theme_cls.primary_light
+    LP:
+        text:'[b]Change Password[/b]'                
+        size_hint:1,.1
+        font_size:20
+        pos_hint:{'center_x':.5,'center_y':.8}
+        halign:'center'
+        markup:True        
+    MsCard:
+        size_hint:.8,.5
+        elevation:15
+        radius:[15]
+        pos_hint:{'center_x':.5,'center_y':0.5}
+        MDGridLayout:                    
+            cols:1
+            spacing:15
+            padding:30,20,30,20
+            size_hint:.1,1
+            pos_hint:{'center_x':.5,'center_y':.5}
+            Text:
+                id:accesskey
+                hint_text:'Access Key'
+                size_hint:.9,.23
+            Text:
+                id:newpass
+                hint_text:'New Password'
+                size_hint:.9,.23
+            Text:
+                id:conpass
+                hint_text:'Confirm New Password'
+                size_hint:.9,.23
+            Command:
+                id:submitpass
+                text:'Submit'
+                size_hint:.2,.2                     
+                on_release:app.root.update_pass(accesskey,newpass,conpass)
+<Home>:
+    md_bg_color:app.theme_cls.primary_light                 
+    MDToolbar:
+        title:'MyStore'
+        pos_hint:{'top':1}
+        left_action_items:[['menu',lambda _:app.root.ids.home_drawer.set_state('open')]]
+        MDIconButton:
+            icon:'newshop.png'
+            pos_hint_y:.5
+    LP:
+        id:welcome
+        pos_hint:{'top':.8,'left':.9}
+<Nav>:
+<HomeDrawer@MDNavigationDrawer>:
+<Operation@MDBottomNavigationItem>:
+<Product@MDScreen>:
+    MDToolbar:
+        title:'Products'
+        pos_hint:{'top':1}
+        left_action_items:[['chevron-left',lambda _:app.root.change_screen('homenologin')]]
+    Nav:
+        id:ptab
+        use_text:False
+        size_hint_y:.9
+        active_font_size:dp(10)
+        inactive_font_size:dp(10)
+        Operation:
+            id:addcat
+            name:'addcat'
+            icon:'group'
+            #text:'[size=5]Create\nCategory[/size]'
+            markup:True
+            MsCard:
+                size_hint:.8,.5
+                elevation:15                
+                radius:[15]
+                pos_hint:{'center_x':.5,'center_y':0.5}
+                MDGridLayout:                    
+                    cols:1
+                    spacing:20
+                    padding:30,20,30,20
+                    size_hint:.1,1
+                    pos_hint:{'center_x':.5,'center_y':.5}
+                    Text:
+                        id:catname
+                        hint_text:'Category Name'
+                        size_hint:.9,.35
+                    Text:
+                        id:catdesc
+                        multiline:True
+                        hint_text:'Description'
+                        size_hint:.9,.5
+                        max_text_length:140
+                    Command:
+                        id:createcat
+                        text:'Create Category'
+                        size_hint:.2,.24               
+                        on_release:app.root.create_category(catname,catdesc)
+        Operation:
+            id:addprod
+            name:'addprod'
+            #text:'Add\nProduct'
+            icon:'tag-plus'
+            ScrollView:
+                size_hint:.8,.9
+                pos_hint:{'center_x':.5,'center_y':0.5}
+                do_scroll:False,True
+                scroll_timeout:100
+                allow_overscroll:False
+                MsCard:
+                    size_hint:1,1.17
+                    elevation:15
+                    radius:[15]
+                    pos_hint:{'center_x':.5,'center_y':0.5}
+                    MDGridLayout:                    
+                        cols:1
+                        spacing:15
+                        padding:30,20,30,20
+                        size_hint:.1,1
+                        pos_hint:{'center_x':.5,'center_y':.5}
+                        Text:
+                            id:pname
+                            hint_text:'Product Name'
+                            size_hint:.9,.15
+                        Text:
+                            id:uprice
+                            hint_text:'Unit Price'
+                            size_hint:.9,.15
+                            input_filter:'float'
+                        Text:
+                            id:pmeasure
+                            hint_text:'Product Measure'
+                            size_hint:.9,.15           
+                        CatText:
+                            id:pcat
+                            hint_text:'Product Category'
+                            size_hint:.9,.15
+                        BigText:
+                            id:pdesc
+                            hint_text:'Product Description'
+                            multiline:True
+                            size_hint:.9,.225
+                        Text:
+                            id:supid
+                            hint_text:'Supplier\'s ID or Username'
+                            size_hint:.9,.15
+                        Text:
+                            id:supshid
+                            hint_text:'Supplier\'s Shop ID or Name'
+                            size_hint:.9,.15
+                        Command:
+                            id:createprod
+                            text:'Add'
+                            size_hint:.2,.1
+                            on_release:app.root.create_product()                     
+        Operation:
+            id:ediprod
+            name:'ediprod'
+            #text:'Edit\nProduct'
+            icon:'briefcase-edit'
+            on_tab_release:app.root.ask_prod()
+            ScrollView:
+                size_hint:.8,.9
+                pos_hint:{'center_x':.5,'center_y':0.5}
+                do_scroll:False,True
+                scroll_timeout:100
+                allow_overscroll:False
+                MsCard:
+                    size_hint:1,2.5
+                    elevation:15
+                    radius:[15]
+                    pos_hint:{'center_x':.5,'center_y':0.5}
+                    MDGridLayout:                    
+                        cols:1
+                        spacing:15
+                        padding:30,20,30,20
+                        size_hint:.1,1
+                        pos_hint:{'center_x':.5,'center_y':.5}
+                        MDBoxLayout:
+                            size_hint:.6,.05
+                            LP:
+                                text:"Product Name"
+                                font_size:15
+                                size_hint:.3,1
+                            Command:
+                                id:editpname
+                                text:"Edit"
+                                pos_hint:{'center_y':.5}
+                                size_hint:.1,1.3
+                                on_release:app.root.eddis(self,epname)
+                        Text:
+                            id:epname
+                            hint_text:'Product Name'
+                            disabled:True
+                            size_hint:.9,.15
+                        MDBoxLayout:
+                            size_hint:.6,.05
+                            LP:
+                                text:"Unit Price"
+                                font_size:15
+                                size_hint:.3,1
+                            Command:
+                                id:edituprice
+                                text:"Edit"
+                                pos_hint:{'center_y':.5}
+                                size_hint:.1,1.3
+                                on_release:app.root.eddis(self,euprice)
+                        Text:
+                            id:euprice
+                            hint_text:'Unit Price'
+                            size_hint:.9,.15
+                            disabled:True
+                            input_filter:'float'
+                        MDBoxLayout:
+                            size_hint:.6,.05
+                            LP:
+                                text:"Product Measure"
+                                font_size:15
+                                size_hint:.3,1
+                            Command:
+                                id:editpmeasure
+                                text:"Edit"
+                                pos_hint:{'center_y':.5}
+                                size_hint:.1,1.3
+                                on_release:app.root.eddis(self,epmeasure)
+                        Text:
+                            id:epmeasure
+                            hint_text:'Product Measure'
+                            size_hint:.9,.15           
+                            disabled:True
+                        MDBoxLayout:
+                            size_hint:.6,.05
+                            LP:
+                                text:"Product Quantity"
+                                font_size:15
+                                size_hint:.3,1
+                            Command:
+                                id:editpquant
+                                text:"Edit"
+                                pos_hint:{'center_y':.5}
+                                size_hint:.1,1.3
+                                on_release:app.root.eddis(self,epquant,epquantreason)
+                        NumText:
+                            id:epquant
+                            hint_text:'Product Quantity'
+                            size_hint:.9,.15                            
+                            disabled:True
+                            on_text_validate:app.root.sqreas()
+                        BigText:
+                            id:epquantreason
+                            hint_text:'Reasons'
+                            size_hint:.9,.225           
+                            disabled:True                            
+                        MDBoxLayout:
+                            size_hint:.6,.05
+                            LP:
+                                text:"Product Category"
+                                font_size:15
+                                size_hint:.3,1
+                            Command:
+                                id:editpcategory
+                                text:"Edit"
+                                pos_hint:{'center_y':.5}
+                                size_hint:.1,1.3
+                                on_release:app.root.eddis(self,epcat)
+                        CatText:
+                            id:epcat
+                            hint_text:'Product Category'
+                            size_hint:.9,.15
+                            disabled:True
+                        MDBoxLayout:
+                            size_hint:.6,.05
+                            LP:
+                                text:"Product Description"
+                                font_size:15
+                                size_hint:.3,1
+                            Command:
+                                id:editpdesc
+                                text:"Edit"
+                                pos_hint:{'center_y':.5}
+                                size_hint:.1,1.3
+                                on_release:app.root.eddis(self,epdesc)
+                        BigText:
+                            id:epdesc
+                            hint_text:'Product Description'
+                            multiline:True
+                            disabled:True
+                            size_hint:.9,.225
+                        MDBoxLayout:
+                            size_hint:.6,.05
+                            LP:
+                                text:"Supplier ID"
+                                font_size:15
+                                size_hint:.3,1
+                            Command:
+                                id:editsupid
+                                text:"Edit"
+                                pos_hint:{'center_y':.5}
+                                size_hint:.1,1.3
+                                on_release:app.root.eddis(self,esupid)
+                        Text:
+                            id:esupid
+                            hint_text:'Supplier\'s ID'
+                            size_hint:.9,.15
+                            disabled:True
+                        MDBoxLayout:
+                            size_hint:.6,.05
+                            LP:
+                                text:"Supplier\'s Shop ID"
+                                font_size:15
+                                size_hint:.3,1
+                            Command:
+                                id:editsupshid
+                                text:"Edit"
+                                pos_hint:{'center_y':.5}
+                                size_hint:.1,1.3
+                                on_release:app.root.eddis(self,esupshid)
+                        Text:
+                            id:esupshid
+                            hint_text:'Supplier\'s Shop ID'
+                            size_hint:.9,.15
+                            disabled:True
+                        Command:
+                            id:editallprod
+                            text:'Apply Change(s)'
+                            size_hint:.2,.1
+                            on_release:app.root.editprod()
+        Operation:
+            id:delprod
+            name:'delprod'
+            #text:'Delete\nProduct'
+            icon:'delete-circle'
+            MsCard:
+                size_hint:.8,.5
+                elevation:15
+                radius:[15]
+                pos_hint:{'center_x':.5,'center_y':0.5}    
+                MDGridLayout:                    
+                    cols:1
+                    spacing:15
+                    padding:30,20,30,20
+                    size_hint:.1,1
+                    pos_hint:{'center_x':.5,'center_y':.5}
+                    Text:
+                        id:dpnameid
+                        hint_text:'Product Name/ID'
+                        size_hint:.9,.23
+                    Text:
+                        id:delreas
+                        multiline:True
+                        hint_text:'Reasons'
+                        size_hint:.9,.4
+                    Command:
+                        id:delproduct
+                        text:'Delete'
+                        size_hint:.2,.2
+                        on_release:app.root.del_prod()
+<Employee@MDScreen>:
+    MDToolbar:
+        title:'Employee'
+        pos_hint:{'top':1}
+        left_action_items:[['chevron-left',lambda _:app.root.change_screen('homenologin')]]
+    MDBottomNavigation:
+        id:etab
+        size_hint_y:.9
+        active_font_size:dp(10)
+        inactive_font_size:dp(10)
+        tab_indicator_anim:True        
+        Operation:
+            id:createmp
+            name:'vacancy'
+            #text:'Create Vacancy'            
+            MsCard:
+                size_hint:.8,.8
+                elevation:15
+                radius:[15]
+                pos_hint:{'center_x':.5,'center_y':0.5}
+                MDGridLayout:                    
+                    cols:1
+                    spacing:15
+                    padding:30,20,30,20
+                    size_hint:.1,1
+                    pos_hint:{'center_x':.5,'center_y':.5}
+                    Text:
+                        id:ndepname
+                        hint_text:'Department Name / ID'
+                        size_hint:.9,.15
+                    NumText:
+                        id:level
+                        hint_text:'Level'                        
+                        size_hint:.9,.15
+                    NumText:
+                        id:slotnum
+                        hint_text:'Number of Slots'
+                        size_hint:.9,.15          
+                        input_filter:'int'
+                    LP:
+                        text:'From'
+                        size_hint:.9,.05
+                    DateButton:
+                        id:dateofstart
+                        text:'Start Date'
+                        size_hint:.9,.1
+                        previous:self
+                        after:dateofend
+                        type:'from'
+                    LP:
+                        text:'To'
+                        size_hint:.9,.05
+                    DateButton:
+                        id:dateofend
+                        text:'End Date'
+                        size_hint:.9,.1                        
+                        previous:dateofstart
+                        after:self
+                        type:'to'
+                    Command:
+                        id:createslot
+                        text:'Create'
+                        size_hint:.2,.125  
+                        on_press:app.root.create_slot()                                              
+        Operation:
+            id:addemp
+            name:'employ'
+            #text:'Employ'            
+            ScrollView:
+                size_hint:.8,.9
+                pos_hint:{'center_x':.5,'center_y':0.5}
+                do_scroll:False,True
+                scroll_timeout:100
+                allow_overscroll:False
+                MsCard:
+                    size_hint:1,1.5
+                    elevation:15
+                    radius:[15]
+                    pos_hint:{'center_x':.5,'center_y':0.5}
+                    MDGridLayout:                    
+                        cols:1
+                        spacing:15
+                        padding:30,20,30,20
+                        size_hint:.1,1
+                        pos_hint:{'center_x':.5,'center_y':.5}
+                        MDBoxLayout:                            
+                            orientation:'horizontal'     
+                            spacing:20
+                            size_hint:.75,.04           
+                            MDTextFieldRound:
+                                id:empdepname
+                                hint_text:'Enter Keyword'
+                                size_hint:.75,1.25
+                            MDIconButton:
+                                icon:'magnify'
+                                size_hint:.15,1
+                                md_bg_color:app.theme_cls.primary_light
+                        MsCard:
+                            size_hint:.9,.55   
+                            radius:[15]
+                            md_bg_color:app.theme_cls.primary_light
+                        Command:
+                            id:empbut
+                            text:'Employ'
+                            size_hint:.2,.05
+        Operation:
+            id:ediemp
+            name:'editemp'
+            #text:'Edit Employee'
+            on_tab_release:app.root.ask_emp()
+            MsCard:
+                size_hint:.8,.6
+                elevation:15
+                radius:[15]
+                pos_hint:{'center_x':.5,'center_y':0.5}
+                MDGridLayout:                    
+                    cols:1
+                    spacing:15
+                    padding:30,20,30,20
+                    size_hint:.1,1
+                    pos_hint:{'center_x':.5,'center_y':.5}
+                    Text:
+                        id:eshpid
+                        hint_text:'Shop ID or Username'
+                        size_hint:.9,.15
+                    Text:
+                        id:edepname
+                        hint_text:'Department Name / ID'
+                        size_hint:.9,.15
+                    Text:
+                        id:elevel
+                        hint_text:'Level'
+                        size_hint:.9,.15
+                    Command:
+                        id:editempbut
+                        text:'Show'
+                        size_hint:.2,.13                    
+        Operation:
+            id:delemp
+            name:'firemp'
+            #text:'Fire Employee'
+            icon:'delete-circle'
+            MsCard:
+                size_hint:.8,.5
+                elevation:15
+                radius:[15]
+                pos_hint:{'center_x':.5,'center_y':0.5}    
+                MDGridLayout:                    
+                    cols:1
+                    spacing:15
+                    padding:30,20,30,20
+                    size_hint:.1,1
+                    pos_hint:{'center_x':.5,'center_y':.5}
+                    Text:
+                        id:dempnameid
+                        hint_text:'Employee Name/ID'
+                        size_hint:.9,.23
+                    Text:
+                        id:delempreas
+                        multiline:True
+                        hint_text:'Reasons'
+                        size_hint:.9,.4
+                    Command:
+                        id:delemp
+                        text:'Fire'
+                        size_hint:.2,.2
+                        on_release:app.root.del_prod()
+<Branch@MDScreen>:
+    MDToolbar:
+        title:'Branch'
+        pos_hint:{'top':1}
+        left_action_items:[['chevron-left',lambda _:app.root.change_screen('homenologin')]]
+    MDBottomNavigation:
+        id:btab
+        size_hint_y:.9
+        active_font_size:dp(10)
+        inactive_font_size:dp(10)
+        tab_indicator_anim:True
+        Operation:
+            id:adddep
+            name:'new_dep'
+            #text:'Add New Department'
+            MsCard:
+                id:depcard
+                size_hint:.8,.7
+                elevation:15                
+                radius:[15]
+                pos_hint:{'center_x':.5,'center_y':.5}                
+                MDBoxLayout:
+                    id:depbox
+                    spacing:10
+                    orientation:'vertical'
+                    padding:30,20,30,20
+                    size_hint:.8,1
+                    pos_hint:{'center_x':.5,'center_y':.5}
+                    Text:
+                        id:depname
+                        hint_text:'Department Name'
+                        size_hint:.9,.25
+                    Text:
+                        id:depdesc
+                        multiline:True
+                        hint_text:'Description'
+                        size_hint:.9,.4
+                        max_text_length:140
+                    Command:
+                        id:nolevel
+                        text:'Create Level'
+                        size_hint:.9,.15      
+                        on_release:app.root.ask_lev()               
+                    MDScrollViewRefreshLayout:
+                        id:levbox
+                        size_hint:.9,.01
+                        level:0
+                    Command:
+                        id:createdep
+                        text:'Create Department'
+                        size_hint:.9,.175  
+                        on_release:app.root.create_dep()             
+        Operation:
+            id:addbranch
+            name:'new_branch'
+            #text:'Add New Branch'
+            Create:
+
+        Operation:
+            id:edibranch
+            name:'edi_branch'
+            #text:'Edit Branch'
+            
+        Operation:
+            id:delbranch
+            name:'del_branch'
+            #text:'Delete Branch'
+<ACamera@MDScreen>:
+    
+<PhotoFile@Screen>:
+    
